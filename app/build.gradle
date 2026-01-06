@@ -1,3 +1,4 @@
+// Force Update: 1767737891.8671281
 apply plugin: 'com.android.application'
 
 android {
@@ -25,10 +26,4 @@ android {
     }
     
     ndkVersion "25.1.8937393"
-}
-
-dependencies {
-    // إضافة مكتبات أساسية لمنع أخطاء التشغيل
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
 }

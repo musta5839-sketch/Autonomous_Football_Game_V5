@@ -1,2 +1,3 @@
-rootProject.name = "Autonomous_Football_Game_V5"
+// Updated: 1767737891.8671281
+rootProject.name = 'Autonomous_Football_Game_V5'
 include ':app'

@@ -1,22 +1,19 @@
-// تم التحديث بتاريخ: 1767736696.2910008
+// Force Update: 1767737891.8671281
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // نستخدم النسخة 8.1.0 المستقرة
         classpath 'com.android.tools.build:gradle:8.1.0'
     }
 }
-
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
