@@ -1,6 +1,4 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.ai.autonomous.game'
@@ -26,6 +24,11 @@ android {
         }
     }
     
-    // إجبار النظام على استخدام نسخة NDK محددة لمنع الأخطاء المستقبلية
     ndkVersion "25.1.8937393"
+}
+
+dependencies {
+    // إضافة مكتبات أساسية لمنع أخطاء التشغيل
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
 }
