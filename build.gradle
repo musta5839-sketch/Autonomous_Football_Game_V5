@@ -4,6 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // نحدد نسخة المحرك هنا فقط
         classpath 'com.android.tools.build:gradle:8.1.0'
     }
 }

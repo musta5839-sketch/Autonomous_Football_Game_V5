@@ -23,7 +23,4 @@ android {
             path "src/main/cpp/CMakeLists.txt"
         }
     }
-    
-    // تحديد نسخة NDK لتجنب أي خطأ آخر
-    ndkVersion "25.1.8937393"
 }
