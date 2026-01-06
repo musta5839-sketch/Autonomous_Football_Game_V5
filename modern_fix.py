@@ -1,8 +1,9 @@
 import os
 
-print("🏗️  جاري تحديث ملفات البناء إلى النظام الحديث (Modern DSL)...")
+print("🏗️  جاري إعادة هيكلة المشروع إلى النظام الحديث (Modern DSL)...")
 
-# 1. تحديث settings.gradle (نقل إدارة الإضافات إلى هنا)
+# 1. تحديث settings.gradle (نظام إدارة الإضافات الحديث)
+# هذا يحل مشكلة "plugin not found"
 settings_content = """pluginManagement {
     repositories {
         google()
@@ -24,7 +25,8 @@ include ':app'
 with open("settings.gradle", "w") as f:
     f.write(settings_content)
 
-# 2. تحديث build.gradle الرئيسي (تنظيف الصيغة القديمة)
+# 2. تحديث build.gradle الرئيسي (تنظيف جذري)
+# نستخدم plugins {} بدلاً من buildscript القديمة المسببة للمشاكل
 root_build_content = """plugins {
     id 'com.android.application' version '8.1.0' apply false
 }
@@ -33,7 +35,7 @@ root_build_content = """plugins {
 with open("build.gradle", "w") as f:
     f.write(root_build_content)
 
-# 3. تحديث app/build.gradle (استخدام Plugins Block)
+# 3. تحديث app/build.gradle (تنسيق حديث)
 app_build_content = """plugins {
     id 'com.android.application'
 }
@@ -62,7 +64,7 @@ android {
         }
     }
     
-    // تثبيت نسخة NDK لتجنب المفاجآت
+    // تثبيت نسخة NDK لتجنب أي مفاجآت
     ndkVersion "25.1.8937393"
 }
 """
@@ -70,10 +72,10 @@ android {
 with open("app/build.gradle", "w") as f:
     f.write(app_build_content)
 
-print("✅ تم تحديث جميع الملفات.")
+print("✅ تم تحديث جميع ملفات البناء.")
 
-# 4. الرفع الفوري للإصلاح
-print("📤 جاري الرفع...")
+# 4. الرفع الفوري
+print("📤 جاري الرفع للسحابة...")
 os.system("git add .")
 os.system('git commit -m "Refactor: Switch to Modern Gradle Plugins DSL"')
 os.system("git push origin main --force")
