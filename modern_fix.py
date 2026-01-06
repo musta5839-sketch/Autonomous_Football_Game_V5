@@ -1,9 +1,9 @@
 import os
 
-print("🏗️  جاري إعادة هيكلة المشروع إلى النظام الحديث (Modern DSL)...")
+print("🏗️  جاري تحديث هيكل المشروع إلى النظام الحديث (Modern DSL)...")
 
-# 1. تحديث settings.gradle (نظام إدارة الإضافات الحديث)
-# هذا يحل مشكلة "plugin not found"
+# 1. تحديث settings.gradle (المسؤول عن جلب الإضافات)
+# هذا الملف يخبر جرادل أين يجد الأدوات
 settings_content = """pluginManagement {
     repositories {
         google()
@@ -25,8 +25,8 @@ include ':app'
 with open("settings.gradle", "w") as f:
     f.write(settings_content)
 
-# 2. تحديث build.gradle الرئيسي (تنظيف جذري)
-# نستخدم plugins {} بدلاً من buildscript القديمة المسببة للمشاكل
+# 2. تحديث build.gradle الرئيسي (تنظيف التضاربات القديمة)
+# نحدد النسخة هنا مرة واحدة فقط
 root_build_content = """plugins {
     id 'com.android.application' version '8.1.0' apply false
 }
@@ -35,7 +35,8 @@ root_build_content = """plugins {
 with open("build.gradle", "w") as f:
     f.write(root_build_content)
 
-# 3. تحديث app/build.gradle (تنسيق حديث)
+# 3. تحديث app/build.gradle (استخدام الصيغة الحديثة)
+# نطلب الأداة بدون ذكر النسخة لأننا ذكرناها في الملف الرئيسي
 app_build_content = """plugins {
     id 'com.android.application'
 }
@@ -64,7 +65,7 @@ android {
         }
     }
     
-    // تثبيت نسخة NDK لتجنب أي مفاجآت
+    // تحديد إصدار NDK لتفادي أي خطأ مستقبلي
     ndkVersion "25.1.8937393"
 }
 """
@@ -72,10 +73,10 @@ android {
 with open("app/build.gradle", "w") as f:
     f.write(app_build_content)
 
-print("✅ تم تحديث جميع ملفات البناء.")
+print("✅ تم تحديث ملفات البناء بنجاح.")
 
-# 4. الرفع الفوري
-print("📤 جاري الرفع للسحابة...")
+# 4. الرفع وتفعيل البناء
+print("📤 جاري الرفع...")
 os.system("git add .")
-os.system('git commit -m "Refactor: Switch to Modern Gradle Plugins DSL"')
+os.system('git commit -m "Refactor: Switch entire project to Modern Gradle Plugins DSL"')
 os.system("git push origin main --force")
