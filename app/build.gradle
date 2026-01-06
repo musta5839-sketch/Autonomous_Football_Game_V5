@@ -1,12 +1,17 @@
-apply plugin: 'com.android.application'
+
+plugins {
+    id 'com.android.application' version '8.1.0'
+}
+
 android {
-    namespace 'com.ai.autonomous.game'
-    compileSdk 34
+    namespace 'com.autonomous.football'
+    compileSdk 33
+
     defaultConfig {
-        applicationId 'com.ai.autonomous.game'
-        minSdk 26
-        targetSdk 34
-        externalNativeBuild { cmake { cppFlags "-std=c++20" } }
+        applicationId "com.autonomous.football"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
     }
-    externalNativeBuild { cmake { path "src/main/cpp/CMakeLists.txt" } }
 }

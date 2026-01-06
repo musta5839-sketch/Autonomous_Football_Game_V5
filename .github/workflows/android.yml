@@ -1,31 +1,30 @@
-name: Victory Build
-on: [push, workflow_dispatch]
+name: Ultimate Build
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup JDK 17
+      - uses: actions/checkout@v3
+      
+      - name: Setup Java 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install NDK & CMake
-        run: sdkmanager "cmake;3.22.1" "ndk;25.1.8937393"
-
-      - name: Build APK (System Gradle)
-        # هنا السر: نستخدم gradle النظام بدلاً من gradlew المفقود
-        run: gradle assembleDebug --no-daemon --stacktrace
-
+          java-version: '17'
+          
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '8.2'
+          
+      - name: Create wrapper
+        run: gradle wrapper
+        
+      - name: Build APK
+        run: ./gradlew assembleDebug
+        
       - name: Upload APK
-        if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: VICTORY-GAME-APK
+          name: Final-Game-APK
           path: app/build/outputs/apk/debug/app-debug.apk
